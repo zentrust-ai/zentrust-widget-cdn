@@ -9,6 +9,7 @@
 
   var scriptTag = document.currentScript;
   var venueId = scriptTag ? scriptTag.getAttribute('data-venue-id') : '';
+  var themeId = scriptTag ? (scriptTag.getAttribute('data-theme') || venueId) : venueId;
   var cdnBase = scriptTag ? scriptTag.src.replace(/\/[^\/]*$/, '') : 'https://zentrust-ai.github.io/zentrust-widget-cdn';
 
   // Load Outfit font
@@ -25,7 +26,7 @@
   document.head.appendChild(ts);
 
   function init(themes) {
-    var theme = themes[venueId] || themes['_default'] || {
+    var theme = themes[themeId] || themes['_default'] || {
       accent: 'd6336c', accentHover: 'e8457a',
       venue: 'Venue Concierge', greet: "Hi! I'm Zeni. How can I help?"
     };
