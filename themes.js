@@ -8,8 +8,8 @@ var ZT_THEMES = {
   "_default": {
     accent: "d6336c",
     accentHover: "e8457a",
-    venue: "Venue Concierge",
-    greet: "Hi! I'm Zeni, your AI concierge. How can I help?"
+    venue: "Concierge",
+    greet: "Hi! I'm Zeni, your concierge. How can I help?"
   },
 
   // The Grand Manor — Melbourne, FL
@@ -17,7 +17,7 @@ var ZT_THEMES = {
     accent: "d4a853",
     accentHover: "e8c06a",
     venue: "The Grand Manor",
-    greet: "Hi there! I'm Zeni, your AI concierge at The Grand Manor. How can I help you today?"
+    greet: "Hi there! I'm Zeni, your Venue concierge at The Grand Manor. How can I help you today?"
   }
 
   // To add a new venue, copy the block above and change:
