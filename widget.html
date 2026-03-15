@@ -909,19 +909,25 @@ function buildCal(con,bd,par){
       var dd=new Date(dk+'T12:00:00');
       var dn=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dd.getDay()];
       var dm=MS[dd.getMonth()]+' '+dd.getDate();
-      info={dayName:dn,displayDate:dm,times:['9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM']};
+      info={dayName:dn,displayDate:dm,times:[]};
     }
     var all=['9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM'];
     var av={};for(var a=0;a<info.times.length;a++)av[info.times[a]]=true;
+    var anyFree=info.times.length>0;
     var h='<div style="margin-top:14px;"><div style="font-size:10.5px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.4);font-weight:500;margin-bottom:8px;">'+info.dayName+', '+info.displayDate+'</div>';
-    h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">';
-    for(var t=0;t<all.length;t++){
-      var free=av[all[t]];
-      if(free){
-        h+='<div data-tm="'+all[t]+'" style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;color:#3a6b52;background:#eef4f0;transition:all 0.15px;">'+all[t]+'</div>';
-      }else{
-        h+='<div style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;color:#cfc3bb;background:#f8f4f1;text-decoration:line-through;">'+all[t]+'</div>';
+    if(!anyFree){
+      h+='<div style="padding:20px;text-align:center;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);">No availability on this day</div>';
+    }else{
+      h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">';
+      for(var t=0;t<all.length;t++){
+        var free=av[all[t]];
+        if(free){
+          h+='<div data-tm="'+all[t]+'" style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;color:'+_accentHex+';background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);transition:all 0.15s;">'+all[t]+'</div>';
+        }else{
+          h+='<div style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.02);text-decoration:line-through;">'+all[t]+'</div>';
+        }
       }
+      h+='</div>';
     }
     h+='</div><button id="cfb" disabled style="width:100%;padding:12px;margin-top:14px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);border:none;border-radius:10px;font-size:12px;font-weight:500;cursor:default;font-family:Outfit,-apple-system,sans-serif;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s;">Select a time</button></div>';
     sec.innerHTML=h;
@@ -929,12 +935,12 @@ function buildCal(con,bd,par){
     var pk=null;
     var tc=sec.querySelectorAll('[data-tm]');
     for(var u=0;u<tc.length;u++)(function(c){
-      c.onmouseenter=function(){if(c.getAttribute('data-tm')!==pk){c.style.outline='1.5px solid #3a6b52';c.style.transform='scale(1.04)';}};
+      c.onmouseenter=function(){if(c.getAttribute('data-tm')!==pk){c.style.outline='1.5px solid '+_accentHex;c.style.transform='scale(1.04)';}};
       c.onmouseleave=function(){if(c.getAttribute('data-tm')!==pk){c.style.outline='';c.style.transform='';}};
       c.onclick=function(){
         var all2=sec.querySelectorAll('[data-tm]');
-        for(var x=0;x<all2.length;x++){all2[x].style.background='#eef4f0';all2[x].style.color='#3a6b52';all2[x].style.outline='';all2[x].style.transform='';}
-        c.style.background='#3a6b52';c.style.color='white';
+        for(var x=0;x<all2.length;x++){all2[x].style.background='rgba(255,255,255,0.04)';all2[x].style.color=_accentHex;all2[x].style.outline='';all2[x].style.transform='';}
+        c.style.background=_accentHex;c.style.color='#fff';
         pk=c.getAttribute('data-tm');
         var b=sec.querySelector('#cfb');b.disabled=false;b.style.background=_accentHex;b.style.cursor='pointer';b.style.color='#fff';
         b.textContent='Book '+info.displayDate+' at '+pk;
