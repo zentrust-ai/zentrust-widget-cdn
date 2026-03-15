@@ -6,10 +6,10 @@ var ZT_THEMES = {
 
   // Default — zentrust.net and any unrecognized venue_id
   "_default": {
-    accent: "d6336c",
-    accentHover: "e8457a",
-    venue: "Concierge",
-    greet: "Hi! I'm Zeni, your concierge. How can I help?"
+    accent: "3a9fb0",
+    accentHover: "4dbbc9",
+    venue: "Venue Concierge",
+    greet: "Hi! I'm Zeni, your Venue concierge. How can I help?"
   },
 
   // The Grand Manor — Melbourne, FL
@@ -17,7 +17,15 @@ var ZT_THEMES = {
     accent: "d4a853",
     accentHover: "e8c06a",
     venue: "The Grand Manor",
-    greet: "Hi there! I'm Zeni, your Venue concierge at The Grand Manor. How can I help you today?"
+    greet: "Hi there! I'm Zeni, your Venue concierge for The Grand Manor. How can I help you today?"
+  },
+
+  // Zentrust landing page — cyan theme, demos Grand Manor bot
+  "zentrust": {
+    accent: "3a9fb0",
+    accentHover: "4dbbc9",
+    venue: "Venue Concierge",
+    greet: "Hi! I'm Zeni, your Venue concierge. How can I help you today?"
   }
 
   // To add a new venue, copy the block above and change:
