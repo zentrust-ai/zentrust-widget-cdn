@@ -349,6 +349,20 @@ var _accent = _urlParams.get('accent') || '3a9fb0';
 var _accentHover = _urlParams.get('accentHover') || '4dbbc9';
 var _venueName = decodeURIComponent(_urlParams.get('venue') || 'Venue Concierge');
 var _greet = decodeURIComponent(_urlParams.get('greet') || "Hi! I'm Zeni, your AI concierge. How can I help?");
+var _mode = _urlParams.get('mode') || 'dark';
+var _isLight = _mode === 'light';
+
+// Light mode color params (defaults to dark)
+var _bgHex = _isLight ? '#' + (_urlParams.get('bg') || 'faf8f6') : '#0d1117';
+var _surfaceHex = _isLight ? '#' + (_urlParams.get('surface') || 'ffffff') : '#131b2e';
+var _headerBgHex = _isLight ? '#' + (_urlParams.get('headerBg') || _accent) : '#131b2e';
+var _textColor = _isLight ? '#' + (_urlParams.get('text') || '3d3d3d') : 'rgba(255,255,255,0.9)';
+var _textSecColor = _isLight ? '#' + (_urlParams.get('textSec') || '888888') : 'rgba(255,255,255,0.5)';
+var _textDimColor = _isLight ? '#bbb' : 'rgba(255,255,255,0.25)';
+var _borderColor = _isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)';
+var _cardBg = _isLight ? '#ffffff' : '#1a2236';
+var _inputBg = _isLight ? '#f5f3f0' : 'rgba(255,255,255,0.04)';
+var _hoverBg = _isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.04)';
 
 // Apply theme colors to CSS variables
 var _accentHex = '#' + _accent;
@@ -357,6 +371,59 @@ var _accentRgb = parseInt(_accent.substr(0,2),16)+','+parseInt(_accent.substr(2,
 document.documentElement.style.setProperty('--gold', _accentHex);
 document.documentElement.style.setProperty('--gold-lt', _accentHoverHex);
 document.documentElement.style.setProperty('--gold-rgb', _accentRgb);
+
+// Apply mode-specific CSS overrides
+if (_isLight) {
+  var lightCSS = document.createElement('style');
+  lightCSS.textContent = [
+    ':root {',
+    '  --ink: ' + _headerBgHex + ';',
+    '  --ink-soft: ' + _surfaceHex + ';',
+    '  --ivory: ' + _bgHex + ';',
+    '  --ivory-dk: ' + _textColor + ';',
+    '  --cream: ' + _borderColor + ';',
+    '  --stone: ' + _textSecColor + ';',
+    '  --white: ' + _surfaceHex + ';',
+    '}',
+    '#chat-window { background:' + _bgHex + '; border:1px solid rgba(0,0,0,0.1); }',
+    '#chat-header { background:' + _headerBgHex + '; border-bottom:1px solid rgba(0,0,0,0.06); }',
+    '#chat-header .hd-info h3 { color:#fff; }',
+    '#chat-header .hd-info span { color:rgba(255,255,255,0.8); }',
+    '#chat-messages { background:' + _bgHex + '; background-image:none; }',
+    '#chat-messages::-webkit-scrollbar-thumb { background:rgba(0,0,0,0.12); }',
+    '.msg.bot { background:' + _surfaceHex + '; color:' + _textColor + '; border:1px solid ' + _borderColor + '; }',
+    '.msg.bot strong { color:#222; }',
+    '.msg.user { color:#fff; }',
+    '.qr button { background:' + _surfaceHex + '; color:' + _textColor + '; border:1px solid ' + _borderColor + '; }',
+    '.qr button:hover { color:#fff; }',
+    '.route-select button { background:' + _surfaceHex + '; color:' + _textColor + '; border:1px solid ' + _borderColor + '; }',
+    '.route-select button .route-label { color:' + _textColor + '; }',
+    '.route-select button .route-desc { color:' + _textSecColor + '; }',
+    '.route-select button:hover { border-color:' + _accentHex + '; background:rgba(' + _accentRgb + ',0.06); }',
+    '.typ { background:' + _surfaceHex + '; border:1px solid ' + _borderColor + '; }',
+    '.contact-card { background:' + _surfaceHex + '; border:1px solid ' + _borderColor + '; }',
+    '.contact-card .cc-header { background:' + _headerBgHex + '; color:#fff; border-bottom:1px solid rgba(0,0,0,0.06); }',
+    '.contact-card .cc-body input { background:' + _inputBg + '; border:1px solid ' + _borderColor + '; color:' + _textColor + '; }',
+    '.contact-card .cc-body input::placeholder { color:' + _textSecColor + '; }',
+    '.contact-card .cc-body input:focus { border-color:' + _accentHex + '; background:#fff; }',
+    '.contact-card .cc-body button { background:' + _accentHex + '; }',
+    '.contact-card .cc-body button:hover { background:' + _accentHoverHex + '; }',
+    '#chat-input-area { background:' + _bgHex + '; border-top:1px solid ' + _borderColor + '; }',
+    '#chat-input { background:' + _surfaceHex + '; border:1px solid ' + _borderColor + '; color:' + _textColor + '; }',
+    '#chat-input::placeholder { color:' + _textSecColor + '; }',
+    '#chat-input:focus { border-color:' + _accentHex + '; background:#fff; }',
+    '#pby { background:' + _bgHex + '; border-top:1px solid ' + _borderColor + '; color:' + _textSecColor + '; }',
+    '#consent-overlay { background:rgba(250,248,246,0.97); }',
+    '#consent-overlay h3 { color:' + _textColor + '; }',
+    '#consent-overlay p { color:' + _textSecColor + '; }',
+    '#consent-overlay .consent-links { color:' + _textSecColor + '; }',
+    '#consent-overlay .consent-icon { background:rgba(' + _accentRgb + ',0.12); }',
+    '#consent-decline { color:' + _textSecColor + '; border-color:' + _borderColor + '; }',
+    '#consent-decline:hover { color:' + _textColor + '; border-color:' + _textSecColor + '; }',
+    '.gm-divider::before, .gm-divider::after { background:linear-gradient(90deg, transparent, ' + _borderColor + ', transparent); }',
+  ].join('\n');
+  document.head.appendChild(lightCSS);
+}
 
 var CFG={
   url:'https://zentrust.app.n8n.cloud/webhook/venue-chat',
@@ -691,10 +758,10 @@ function showOptIns(){
   card1.id='cc-followup';
   card1.innerHTML='<div class="cc-header"><span>🔔</span>Stay Updated</div>'
     +'<div class="cc-body" style="text-align:center;">'
-    +'<p style="font-size:13px;color:#666;margin-bottom:14px;line-height:1.5;">Would you like us to send you helpful reminders about your upcoming tour and special promotions?</p>'
+    +'<p style="font-size:13px;color:'+_textSecColor+';margin-bottom:14px;line-height:1.5;">Would you like us to send you helpful reminders about your upcoming tour and special promotions?</p>'
     +'<div style="display:flex;gap:10px;">'
-    +'<button onclick="submitOptIn(\'followup\',true)" style="flex:1;background:#131b2e;">Yes, please!</button>'
-    +'<button onclick="submitOptIn(\'followup\',false)" style="flex:1;background:transparent;color:#999;border:1.5px solid #e0e0e0;">No thanks</button>'
+    +'<button onclick="submitOptIn(\'followup\',true)" style="flex:1;background:'+_accentHex+';color:#fff;">Yes, please!</button>'
+    +'<button onclick="submitOptIn(\'followup\',false)" style="flex:1;background:transparent;color:'+_textSecColor+';border:1.5px solid '+_borderColor+';">No thanks</button>'
     +'</div></div>';
   d.appendChild(card1);scr();
 }
@@ -706,10 +773,10 @@ function showVendorOptIn(){
   card2.id='cc-vendor';
   card2.innerHTML='<div class="cc-header"><span>💍</span>Vendor Recommendations</div>'
     +'<div class="cc-body" style="text-align:center;">'
-    +'<p style="font-size:13px;color:#666;margin-bottom:14px;line-height:1.5;">Would you like to receive recommendations from our trusted wedding vendors? (DJs, photographers, florists, and more)</p>'
+    +'<p style="font-size:13px;color:'+_textSecColor+';margin-bottom:14px;line-height:1.5;">Would you like to receive recommendations from our trusted wedding vendors? (DJs, photographers, florists, and more)</p>'
     +'<div style="display:flex;gap:10px;">'
-    +'<button onclick="submitOptIn(\'vendor\',true)" style="flex:1;background:#131b2e;">Yes, show me vendors!</button>'
-    +'<button onclick="submitOptIn(\'vendor\',false)" style="flex:1;background:transparent;color:#999;border:1.5px solid #e0e0e0;">No thanks</button>'
+    +'<button onclick="submitOptIn(\'vendor\',true)" style="flex:1;background:'+_accentHex+';color:#fff;">Yes, show me vendors!</button>'
+    +'<button onclick="submitOptIn(\'vendor\',false)" style="flex:1;background:transparent;color:'+_textSecColor+';border:1.5px solid '+_borderColor+';">No thanks</button>'
     +'</div></div>';
   d.appendChild(card2);scr();
 }
@@ -781,10 +848,10 @@ function renderMP(){
   var now=new Date(),yr=now.getFullYear();
   var w=document.createElement('div');
   w.setAttribute('data-pk','m');
-  w.style.cssText='flex-shrink:0;align-self:flex-start;width:90%;background:#131b2e;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.08);margin:4px 0;overflow:visible;';
+  w.style.cssText='flex-shrink:0;align-self:flex-start;width:90%;background:'+_cardBg+';border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,'+ (_isLight?'0.1':'0.3') +');border:1px solid '+_borderColor+';margin:4px 0;overflow:visible;';
 
   function draw(){
-    var h='<div style="display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:#131b2e;color:#fff;border-radius:13px 13px 0 0;border-bottom:1px solid rgba(255,255,255,0.06);">';
+    var h='<div style="display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:'+_headerBgHex+';color:#fff;border-radius:13px 13px 0 0;border-bottom:1px solid '+_borderColor+';">'; 
     h+='<button data-d="-1" style="background:none;border:none;color:'+_accentHoverHex+';font-size:20px;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;">&#8249;</button>';
     h+='<span style="font-size:15px;font-weight:500;letter-spacing:0.05em;font-family:Cormorant Garamond,Georgia,serif;">'+yr+'</span>';
     h+='<button data-d="1" style="background:none;border:none;color:'+_accentHoverHex+';font-size:20px;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;">&#8250;</button>';
@@ -792,7 +859,7 @@ function renderMP(){
     h+='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:14px;">';
     for(var i=0;i<12;i++){
       var past=(yr===now.getFullYear()&&i<now.getMonth());
-      h+='<div data-m="'+i+'" style="padding:10px 4px;text-align:center;border-radius:10px;font-size:13px;font-weight:400;cursor:'+(past?'default':'pointer')+';background:'+(past?'#1a1a2e':'rgba(255,255,255,0.04)')+';color:'+(past?'rgba(255,255,255,0.2)':'rgba(255,255,255,0.85)')+';transition:all 0.15s;">'+MS[i]+'</div>';
+      h+='<div data-m="'+i+'" style="padding:10px 4px;text-align:center;border-radius:10px;font-size:13px;font-weight:400;cursor:'+(past?'default':'pointer')+';background:'+(past?(_isLight?'#f0eeec':_hoverBg):_hoverBg)+';color:'+(past?_textDimColor:_textColor)+';transition:all 0.15s;">'+MS[i]+'</div>';
     }
     h+='</div>';
     w.innerHTML=h;
@@ -815,7 +882,7 @@ function renderMP(){
       var isPast=(yr===now.getFullYear()&&idx<now.getMonth());
       if(!isPast){
         c.onmouseenter=function(){c.style.background=_accentHex;c.style.color='#fff';c.style.transform='scale(1.04)';};
-        c.onmouseleave=function(){c.style.background='rgba(255,255,255,0.04)';c.style.color='rgba(255,255,255,0.85)';c.style.transform='';};
+        c.onmouseleave=function(){c.style.background=_hoverBg;c.style.color=_textColor;c.style.transform='';};
         c.onclick=function(){
           var val=MO[idx]+' '+yr;
           w.style.pointerEvents='none';w.style.opacity='0.4';
@@ -835,11 +902,11 @@ function renderMP(){
 function renderTP(slots,byDate){
   var w=document.createElement('div');
   w.setAttribute('data-pk','t');
-  w.style.cssText='flex-shrink:0;align-self:flex-start;width:92%;background:#131b2e;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.08);margin:4px 0;overflow:visible;';
+  w.style.cssText='flex-shrink:0;align-self:flex-start;width:92%;background:'+_cardBg+';border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,'+ (_isLight?'0.1':'0.3') +');border:1px solid '+_borderColor+';margin:4px 0;overflow:visible;';
 
   // Calendar-only — no suggested slots, just the picker
-  var h='<div style="padding:13px 18px;background:#131b2e;color:#fff;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;border-radius:13px 13px 0 0;border-bottom:1px solid rgba(255,255,255,0.06);">Select a Date &amp; Time</div>';
-  h+='<div style="padding:10px 14px 4px;font-size:11.5px;color:rgba(255,255,255,0.4);text-align:center;letter-spacing:0.03em;">Tours available Mon–Fri &nbsp;·&nbsp; 9 AM – 3 PM</div>';
+  var h='<div style="padding:13px 18px;background:'+_headerBgHex+';color:#fff;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;border-radius:13px 13px 0 0;border-bottom:1px solid '+_borderColor+';">Select a Date &amp; Time</div>';
+  h+='<div style="padding:10px 14px 4px;font-size:11.5px;color:'+_textSecColor+';text-align:center;letter-spacing:0.03em;">Tours available Mon–Fri &nbsp;·&nbsp; 9 AM – 3 PM</div>';
   h+='<div id="tcal" style="padding:16px;"></div>';
   w.innerHTML=h;
 
@@ -858,12 +925,12 @@ function buildCal(con,bd,par){
   function draw(){
     var f=new Date(vy,vm,1).getDay(),tot=new Date(vy,vm+1,0).getDate();
     var h='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">';
-    h+='<button data-cn="-1" style="background:none;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.9);width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;">&#8249;</button>';
-    h+='<span style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.9);font-family:Cormorant Garamond,Georgia,serif;letter-spacing:0.03em;">'+MO[vm]+' '+vy+'</span>';
-    h+='<button data-cn="1" style="background:none;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.9);width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;">&#8250;</button>';
+    h+='<button data-cn="-1" style="background:none;border:1px solid '+_borderColor+';color:'+_textColor+';width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;">&#8249;</button>';
+    h+='<span style="font-size:14px;font-weight:500;color:'+_textColor+';font-family:Cormorant Garamond,Georgia,serif;letter-spacing:0.03em;">'+MO[vm]+' '+vy+'</span>';
+    h+='<button data-cn="1" style="background:none;border:1px solid '+_borderColor+';color:'+_textColor+';width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;">&#8250;</button>';
     h+='</div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center;">';
     var dw=['Su','Mo','Tu','We','Th','Fr','Sa'];
-    for(var d=0;d<7;d++)h+='<div style="font-size:10px;color:#bbb;font-weight:600;padding:4px 0;">'+dw[d]+'</div>';
+    for(var d=0;d<7;d++)h+='<div style="font-size:10px;color:'+_textSecColor+';font-weight:600;padding:4px 0;">'+dw[d]+'</div>';
     for(var e=0;e<f;e++)h+='<div></div>';
     for(var i=1;i<=tot;i++){
       var dt=new Date(vy,vm,i);
@@ -874,7 +941,7 @@ function buildCal(con,bd,par){
       var off=ps||wk||(isFutureWeekday?false:!ha);
       var isSel=sel===k;
       var bg=isSel?_accentHex:'transparent';
-      var col=isSel?'#fff':(off?'rgba(255,255,255,0.15)':'rgba(255,255,255,0.85)');
+      var col=isSel?'#fff':(off?_textDimColor:_textColor);
       var cur=off?'default':'pointer';
       var dot=(ha&&!ps&&!wk)?'<div style="width:4px;height:4px;background:'+_accentHex+';border-radius:50%;margin:1px auto 0;"></div>':'';
       h+='<div data-dy="'+(off?'':k)+'" style="padding:7px 2px;font-size:12px;border-radius:8px;cursor:'+cur+';color:'+col+';background:'+bg+';font-weight:500;position:relative;">'+i+dot+'</div>';
@@ -897,7 +964,7 @@ function buildCal(con,bd,par){
       var dk=c.getAttribute('data-dy');
       if(!dk)return;
       c.onmouseenter=function(){if(sel!==dk){c.style.background=_accentHex;c.style.color='#fff';}};
-      c.onmouseleave=function(){if(sel!==dk){c.style.background='';c.style.color='rgba(255,255,255,0.85)';}};
+      c.onmouseleave=function(){if(sel!==dk){c.style.background='';c.style.color=_textColor;}};
       c.onclick=function(){sel=dk;draw();showTm(dk);scr();};
     })(ds[j]);
     if(sel)showTm(sel);
@@ -914,22 +981,22 @@ function buildCal(con,bd,par){
     var all=['9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM'];
     var av={};for(var a=0;a<info.times.length;a++)av[info.times[a]]=true;
     var anyFree=info.times.length>0;
-    var h='<div style="margin-top:14px;"><div style="font-size:10.5px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.4);font-weight:500;margin-bottom:8px;">'+info.dayName+', '+info.displayDate+'</div>';
+    var h='<div style="margin-top:14px;"><div style="font-size:10.5px;text-transform:uppercase;letter-spacing:0.1em;color:'+_textSecColor+';font-weight:500;margin-bottom:8px;">'+info.dayName+', '+info.displayDate+'</div>';
     if(!anyFree){
-      h+='<div style="padding:20px;text-align:center;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);">No availability on this day</div>';
+      h+='<div style="padding:20px;text-align:center;border-radius:10px;font-size:13px;color:'+_textSecColor+';background:'+_hoverBg+';border:1px solid '+_borderColor+';">No availability on this day</div>';
     }else{
       h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">';
       for(var t=0;t<all.length;t++){
         var free=av[all[t]];
         if(free){
-          h+='<div data-tm="'+all[t]+'" style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;color:'+_accentHex+';background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);transition:all 0.15s;">'+all[t]+'</div>';
+          h+='<div data-tm="'+all[t]+'" style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;color:'+_accentHex+';background:'+_hoverBg+';border:1px solid '+_borderColor+';transition:all 0.15s;">'+all[t]+'</div>';
         }else{
-          h+='<div style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.02);text-decoration:line-through;">'+all[t]+'</div>';
+          h+='<div style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;color:'+_textDimColor+';background:'+(_isLight?'#f5f3f0':_hoverBg)+';text-decoration:line-through;">'+all[t]+'</div>';
         }
       }
       h+='</div>';
     }
-    h+='</div><button id="cfb" disabled style="width:100%;padding:12px;margin-top:14px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);border:none;border-radius:10px;font-size:12px;font-weight:500;cursor:default;font-family:Outfit,-apple-system,sans-serif;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s;">Select a time</button></div>';
+    h+='</div><button id="cfb" disabled style="width:100%;padding:12px;margin-top:14px;background:'+_hoverBg+';color:'+_textSecColor+';border:none;border-radius:10px;font-size:12px;font-weight:500;cursor:default;font-family:Outfit,-apple-system,sans-serif;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s;">Select a time</button></div>';
     sec.innerHTML=h;
 
     var pk=null;
@@ -939,7 +1006,7 @@ function buildCal(con,bd,par){
       c.onmouseleave=function(){if(c.getAttribute('data-tm')!==pk){c.style.outline='';c.style.transform='';}};
       c.onclick=function(){
         var all2=sec.querySelectorAll('[data-tm]');
-        for(var x=0;x<all2.length;x++){all2[x].style.background='rgba(255,255,255,0.04)';all2[x].style.color=_accentHex;all2[x].style.outline='';all2[x].style.transform='';}
+        for(var x=0;x<all2.length;x++){all2[x].style.background=_hoverBg;all2[x].style.color=_accentHex;all2[x].style.outline='';all2[x].style.transform='';}
         c.style.background=_accentHex;c.style.color='#fff';
         pk=c.getAttribute('data-tm');
         var b=sec.querySelector('#cfb');b.disabled=false;b.style.background=_accentHex;b.style.cursor='pointer';b.style.color='#fff';
