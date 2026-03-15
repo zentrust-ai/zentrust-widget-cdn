@@ -2,8 +2,8 @@
   'use strict';
 
   // ============================================
-  // ZENTRUST WIDGET LOADER v2.0
-  // One script tag embeds Zeni on any venue site.
+  // ZENTRUST WIDGET LOADER v3.0
+  // Supports light + dark themes, configurable toggle size
   // Usage: <script src=".../widget-loader.js" data-venue-id="grand_manor"></script>
   // ============================================
 
@@ -15,7 +15,7 @@
   // Load Outfit font
   var fontLink = document.createElement('link');
   fontLink.rel = 'stylesheet';
-  fontLink.href = 'https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap';
   document.head.appendChild(fontLink);
 
   // Load themes.js then initialize
@@ -27,52 +27,71 @@
 
   function init(themes) {
     var theme = themes[themeId] || themes['_default'] || {
-      accent: 'd6336c', accentHover: 'e8457a',
-      venue: 'Venue Concierge', greet: "Hi! I'm Zeni. How can I help?"
+      accent: '3a9fb0', accentHover: '4dbbc9',
+      venue: 'Venue Concierge', greet: "Hi! I'm Zeni. How can I help?", mode: 'dark'
     };
 
+    var mode = theme.mode || 'dark';
+    var isLight = mode === 'light';
     var accent = '#' + theme.accent;
+    var toggleH = parseInt(theme.toggleSize) || 50;
+    var toggleR = Math.round(toggleH / 2);
 
-    // Widget URL with theme params
+    // Toggle colors based on mode
+    var toggleBg = isLight ? accent : '#131b2e';
+    var toggleText = isLight ? '#fff' : 'rgba(255,255,255,0.7)';
+    var toggleIconFill = isLight ? '#fff' : accent;
+    var toggleShadow = isLight
+      ? '0 4px 20px rgba(0,0,0,0.2)'
+      : '0 4px 20px rgba(13,17,23,0.5)';
+    var frameBg = isLight ? '#' + (theme.bg || 'faf8f6') : '#0d1117';
+
+    // Build widget URL with ALL theme params
     var widgetUrl = cdnBase + '/widget.html'
       + '?venue_id=' + encodeURIComponent(venueId)
       + '&accent=' + encodeURIComponent(theme.accent)
       + '&accentHover=' + encodeURIComponent(theme.accentHover)
       + '&venue=' + encodeURIComponent(theme.venue)
-      + '&greet=' + encodeURIComponent(theme.greet);
+      + '&greet=' + encodeURIComponent(theme.greet)
+      + '&mode=' + encodeURIComponent(mode)
+      + (theme.bg ? '&bg=' + encodeURIComponent(theme.bg) : '')
+      + (theme.surface ? '&surface=' + encodeURIComponent(theme.surface) : '')
+      + (theme.headerBg ? '&headerBg=' + encodeURIComponent(theme.headerBg) : '')
+      + (theme.text ? '&text=' + encodeURIComponent(theme.text) : '')
+      + (theme.textSec ? '&textSec=' + encodeURIComponent(theme.textSec) : '');
 
     // Styles
     var style = document.createElement('style');
     style.textContent = [
       '#zt-toggle {',
-      '  position:fixed; bottom:24px; right:24px; height:50px; padding:0 22px;',
-      '  background:#1a1a2e; border-radius:25px;',
+      '  position:fixed; bottom:24px; right:24px; height:' + toggleH + 'px; padding:0 ' + Math.round(toggleH * 0.44) + 'px;',
+      '  background:' + toggleBg + '; border-radius:' + toggleR + 'px;',
       '  display:flex; align-items:center; justify-content:center; gap:9px;',
       '  cursor:pointer; z-index:2147483646;',
-      '  box-shadow:0 4px 20px rgba(26,26,46,0.4);',
+      '  box-shadow:' + toggleShadow + ';',
       '  transition:all 0.3s cubic-bezier(.34,1.56,.64,1);',
       '  font-family:"Outfit",-apple-system,sans-serif;',
-      '  font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase;',
-      '  color:rgba(255,255,255,0.85); border:none; outline:none;',
+      '  font-size:' + Math.max(Math.round(toggleH * 0.24), 12) + 'px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase;',
+      '  color:' + toggleText + '; border:none; outline:none;',
       '}',
-      '#zt-toggle:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(26,26,46,0.5); }',
-      '#zt-toggle svg { width:18px; height:18px; flex-shrink:0; }',
-      '#zt-toggle .zt-icon-chat { fill:' + accent + '; }',
-      '#zt-toggle .zt-icon-close { fill:' + accent + '; display:none; }',
-      '#zt-toggle .zt-label { color:rgba(255,255,255,0.7); }',
-      '#zt-toggle.zt-open { width:50px; padding:0; border-radius:50%; }',
+      '#zt-toggle:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,0.3); }',
+      '#zt-toggle svg { width:' + Math.round(toggleH * 0.36) + 'px; height:' + Math.round(toggleH * 0.36) + 'px; flex-shrink:0; }',
+      '#zt-toggle .zt-icon-chat { fill:' + toggleIconFill + '; }',
+      '#zt-toggle .zt-icon-close { fill:' + toggleIconFill + '; display:none; }',
+      '#zt-toggle .zt-label { color:' + toggleText + '; }',
+      '#zt-toggle.zt-open { width:' + toggleH + 'px; padding:0; border-radius:50%; }',
       '#zt-toggle.zt-open .zt-icon-chat, #zt-toggle.zt-open .zt-label { display:none; }',
       '#zt-toggle.zt-open .zt-icon-close { display:block; }',
       '',
       '#zt-frame {',
-      '  position:fixed; bottom:90px; right:24px;',
+      '  position:fixed; bottom:' + (toggleH + 40) + 'px; right:24px;',
       '  width:400px; height:590px;',
       '  border:none; border-radius:16px;',
       '  z-index:2147483645;',
-      '  box-shadow:0 8px 40px rgba(0,0,0,0.35);',
+      '  box-shadow:0 8px 40px rgba(0,0,0,' + (isLight ? '0.15' : '0.35') + ');',
       '  display:none; opacity:0; transform:translateY(16px) scale(0.97);',
       '  transition:opacity 0.3s cubic-bezier(.22,1,.36,1), transform 0.3s cubic-bezier(.22,1,.36,1);',
-      '  background:#111116;',
+      '  background:' + frameBg + ';',
       '}',
       '#zt-frame.zt-show { display:block; }',
       '#zt-frame.zt-visible { opacity:1; transform:translateY(0) scale(1); }',
