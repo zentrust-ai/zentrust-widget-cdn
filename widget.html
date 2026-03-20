@@ -246,14 +246,14 @@
     #pby a:hover { color:var(--ink); }
 
     /* ── Consent overlay ── */
-    #consent-overlay {
-      position:absolute; top:0; left:0; right:0; bottom:0;
-      background:rgba(17,17,22,0.97);
-      backdrop-filter:blur(6px);
-      z-index:10; display:flex; flex-direction:column;
-      justify-content:center; align-items:center;
-      padding:32px 28px; text-align:center;
+    #consent-overlay .consent-icon {
+      width:52px; height:52px; min-width:52px; max-width:52px; min-height:52px; max-height:52px;
+      border-radius:50%; overflow:hidden;
+      background:rgba(var(--gold-rgb),0.15); display:flex; align-items:center; justify-content:center;
+      margin-bottom:18px;
+      box-shadow:0 4px 16px rgba(var(--gold-rgb),0.15);
     }
+    #consent-overlay .consent-icon svg { width:22px !important; height:22px !important; max-width:22px; max-height:22px; fill:var(--gold-lt); }
     #consent-overlay.hidden { display:none; }
     #consent-overlay .consent-icon {
       width:52px; height:52px; border-radius:50%;
