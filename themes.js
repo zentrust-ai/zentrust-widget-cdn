@@ -18,8 +18,8 @@ var ZT_THEMES = {
   "grand_manor": {
     accent: "8E7CA5",
     accentHover: "a08db8",
-    venue: "The Grand Manor Concierge",
-    greet: "Hi there! I'm Zeni, your Venue concierge at The Grand Manor. How can I help you today?",
+    venue: "Venue Concierge",
+    greet: "Hi! I'm Zeni, your Venue concierge at The Grand Manor. How can I help you today?",
     mode: "light",
     bg: "faf8f6",
     surface: "ffffff",
