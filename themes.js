@@ -2,9 +2,7 @@
 // Add new venues here. That's it — no other files to change.
 // Colors are hex WITHOUT the # prefix (passed via URL params)
 // mode: "dark" (default) or "light"
-
 var ZT_THEMES = {
-
   // Default — zentrust.net and any unrecognized venue_id
   "_default": {
     accent: "3a9fb0",
@@ -13,7 +11,6 @@ var ZT_THEMES = {
     greet: "Hi! I'm Zeni, your Venue concierge. How can I help?",
     mode: "dark"
   },
-
   // The Grand Manor — Melbourne, FL (light elegant theme)
   "grand_manor": {
     accent: "8E7CA5",
@@ -28,7 +25,6 @@ var ZT_THEMES = {
     textSec: "888888",
     toggleSize: "56"
   },
-
   // Zentrust landing page — teal theme, demos Grand Manor bot
   "zentrust": {
     accent: "3a9fb0",
@@ -37,7 +33,6 @@ var ZT_THEMES = {
     greet: "Hi! I'm Zeni, your Venue concierge. How can I help you today?",
     mode: "dark"
   }
-
   // To add a new venue, copy the block above and change:
   //   "venue_id": {
   //     accent: "HEX_COLOR",
