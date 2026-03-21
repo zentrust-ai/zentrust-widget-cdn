@@ -28,10 +28,8 @@
     html, body { width:100%; height:100%; overflow:hidden; }
     body { font-family:var(--sans); }
 
-    /* ── Toggle pill — HIDDEN in iframe mode (loader handles this) ── */
     #chat-toggle { display:none !important; }
 
-    /* ── Chat window — fills iframe ── */
     #chat-window {
       position:absolute; top:0; left:0; right:0; bottom:0;
       width:100%; height:100%;
@@ -44,7 +42,6 @@
       to   { opacity:1; transform:translateY(0)   scale(1);    }
     }
 
-    /* ── Header ── */
     #chat-header {
       background: linear-gradient(135deg, #131b2e 0%, rgba(var(--gold-rgb),0.18) 100%);
       background-image:
@@ -73,7 +70,6 @@
       border-radius:50%; box-shadow:0 0 5px rgba(110,231,160,0.6);
     }
 
-    /* ── Message area ── */
     #chat-messages {
       flex:1; overflow-y:auto; padding:20px 18px;
       background:#0a0f18;
@@ -84,7 +80,6 @@
     #chat-messages::-webkit-scrollbar-track { background:transparent; }
     #chat-messages::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1); border-radius:4px; }
 
-    /* ── Messages ── */
     .msg {
       max-width:82%; padding:11px 16px; border-radius:18px;
       font-size:14px; line-height:1.6; word-wrap:break-word; flex-shrink:0;
@@ -108,7 +103,6 @@
       border:1px solid rgba(163,48,48,0.15);
     }
 
-    /* ── Quick replies ── */
     .qr { display:flex; flex-wrap:wrap; gap:7px; align-self:flex-start; max-width:92%; flex-shrink:0; }
     .qr button {
       background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.8); border:1px solid rgba(255,255,255,0.1);
@@ -127,7 +121,6 @@
     .qr button.cust { border-style:dashed; color:var(--stone); border-color:var(--cream); }
     .qr.used button { pointer-events:none; opacity:0.3; }
 
-    /* ── Route selection ── */
     .route-select {
       display:flex; flex-direction:column; gap:8px;
       align-self:flex-start; width:90%; flex-shrink:0;
@@ -152,7 +145,6 @@
     .route-select button .route-desc { font-size:11.5px; color:var(--stone); font-weight:300; }
     .route-select.used button { pointer-events:none; opacity:0.3; }
 
-    /* ── Typing indicator ── */
     .typ {
       display:flex; gap:5px; padding:11px 15px;
       background:rgba(255,255,255,0.04); border-radius:18px; border-bottom-left-radius:5px;
@@ -168,7 +160,6 @@
     .typ span:nth-child(2) { animation-delay:-0.16s; }
     @keyframes bn { 0%,80%,100%{transform:scale(0.55);opacity:0.35} 40%{transform:scale(1);opacity:1} }
 
-    /* ── Contact cards ── */
     .contact-card {
       flex-shrink:0; align-self:flex-start; width:91%;
       background:rgba(255,255,255,0.03); border-radius:14px;
@@ -212,7 +203,6 @@
     .contact-card .cc-body button:disabled { background:var(--cream); color:var(--stone); cursor:not-allowed; }
     .contact-card.used { pointer-events:none; opacity:0.38; }
 
-    /* ── Input area ── */
     #chat-input-area {
       padding:12px 14px; background:#0d1117;
       border-top:1px solid rgba(255,255,255,0.06);
@@ -240,7 +230,6 @@
     #chat-send:disabled { background:var(--cream); cursor:not-allowed; box-shadow:none; transform:none; }
     #chat-send svg { width:18px; height:18px; fill:#fff; }
 
-    /* ── Footer ── */
     #pby {
       text-align:center; padding:7px;
       font-size:10.5px; color:rgba(255,255,255,0.3); letter-spacing:0.05em;
@@ -249,7 +238,6 @@
     #pby a { color:var(--gold); text-decoration:none; transition:color 0.15s; }
     #pby a:hover { color:var(--ink); }
 
-    /* ── Consent overlay ── */
     #consent-overlay {
       position:absolute; top:0; left:0; right:0; bottom:0;
       background:rgba(17,17,22,0.97);
@@ -294,7 +282,6 @@
       display:none; font-size:12.5px; color:var(--error); margin-top:12px; line-height:1.6; font-weight:300;
     }
 
-    /* ── Divider line ── */
     .gm-divider {
       align-self:center; display:flex; align-items:center; gap:10px;
       margin:2px 0; width:80%; opacity:0.45;
@@ -321,11 +308,10 @@
     <div class="hd-info"><h3 id="vname">Venue Concierge</h3><span>Online &nbsp;·&nbsp; Typically replies instantly</span></div>
   </div>
   <div id="chat-messages"></div>
-  <!-- Consent overlay — blocks chat until accepted -->
   <div id="consent-overlay">
     <div class="consent-icon"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
     <h3>Before we chat</h3>
-    <p>By using this concierge, you agree to our Terms of Service and Privacy Policy. Your information will be used to assist with your venue inquiry.</p>
+    <p>By using this concierge, you agree to our Terms of Service and Privacy Policy. Your information will be used to assist with your venue inquiry and send relevant follow-up communications.</p>
     <div class="consent-links">
       <a href="https://zentrust.net/terms.html" target="_blank">Terms of Service</a> · <a href="https://zentrust.net/privacy.html" target="_blank">Privacy Policy</a>
     </div>
@@ -343,7 +329,6 @@
 </div>
 
 <script>
-// === IFRAME MODE: Read ALL config from URL params ===
 var _urlParams = new URLSearchParams(window.location.search);
 var _venueId = _urlParams.get('venue_id') || '';
 var _accent = _urlParams.get('accent') || '3a9fb0';
@@ -353,7 +338,6 @@ var _greet = decodeURIComponent(_urlParams.get('greet') || "Hi! I'm Zeni, your A
 var _mode = _urlParams.get('mode') || 'dark';
 var _isLight = _mode === 'light';
 
-// Light mode color params (defaults to dark)
 var _bgHex = _isLight ? '#' + (_urlParams.get('bg') || 'faf8f6') : '#0d1117';
 var _surfaceHex = _isLight ? '#' + (_urlParams.get('surface') || 'ffffff') : '#131b2e';
 var _headerBgHex = _isLight ? '#' + (_urlParams.get('headerBg') || _accent) : '#131b2e';
@@ -365,7 +349,6 @@ var _cardBg = _isLight ? '#ffffff' : '#1a2236';
 var _inputBg = _isLight ? '#f5f3f0' : 'rgba(255,255,255,0.04)';
 var _hoverBg = _isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.04)';
 
-// Apply theme colors to CSS variables
 var _accentHex = '#' + _accent;
 var _accentHoverHex = '#' + _accentHover;
 var _accentRgb = parseInt(_accent.substr(0,2),16)+','+parseInt(_accent.substr(2,2),16)+','+parseInt(_accent.substr(4,2),16);
@@ -373,7 +356,6 @@ document.documentElement.style.setProperty('--gold', _accentHex);
 document.documentElement.style.setProperty('--gold-lt', _accentHoverHex);
 document.documentElement.style.setProperty('--gold-rgb', _accentRgb);
 
-// Apply mode-specific CSS overrides
 if (_isLight) {
   var lightCSS = document.createElement('style');
   lightCSS.textContent = [
@@ -438,7 +420,7 @@ var MS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 var isOpen=false,sid='session_'+(typeof crypto!=='undefined'&&typeof crypto.randomUUID==='function'?crypto.randomUUID():Date.now()+'_'+Math.random().toString(36).substr(2,12)+Math.random().toString(36).substr(2,12)),busy=false;
 var consented=false;
 var currentRoute=null;
-var cState={name:'',email:'',phone:'',guest_count:'',date_interest:'',tour_date:'',budget_range:'',intent_score:0,wants_booking:false,booking_created:false,escalated:false,status:'new',followup_optin:null,vendor_optin:null};
+var cState={name:'',email:'',phone:'',guest_count:'',date_interest:'',tour_date:'',budget_range:'',intent_score:0,wants_booking:false,booking_created:false,escalated:false,status:'new',sms_optin:null};
 var recent=[];
 document.getElementById('vname').textContent=CFG.venue;
 
@@ -464,11 +446,32 @@ function showPhoneCard(){hideInputArea();var d=document.getElementById('chat-mes
 
 function submitPhone(){var inp=document.getElementById('cc-input-phone');var err=document.getElementById('cc-err-phone');var raw=inp.value.replace(/\D/g,'');if(raw.length!==10){err.textContent='Please enter a valid 10-digit phone number';err.style.display='block';return;}err.style.display='none';document.getElementById('cc-phone').classList.add('used');var formatted='('+raw.slice(0,3)+') '+raw.slice(3,6)+'-'+raw.slice(6);cState.phone=raw;addMsg(formatted,'user');showInputArea();sendWH(raw);}
 
-function showOptIns(){hideInputArea();var d=document.getElementById('chat-messages');var card1=document.createElement('div');card1.className='contact-card';card1.id='cc-followup';card1.innerHTML='<div class="cc-header"><span>🔔</span>Stay Updated</div><div class="cc-body" style="text-align:center;"><p style="font-size:13px;color:'+_textSecColor+';margin-bottom:14px;line-height:1.5;">Would you like us to send you helpful reminders about your upcoming tour and special promotions?</p><div style="display:flex;gap:10px;"><button onclick="submitOptIn(\'followup\',true)" style="flex:1;background:'+_accentHex+';color:#fff;">Yes, please!</button><button onclick="submitOptIn(\'followup\',false)" style="flex:1;background:transparent;color:'+_textSecColor+';border:1.5px solid '+_borderColor+';">No thanks</button></div></div>';d.appendChild(card1);scr();}
+function showOptIns(){
+  hideInputArea();
+  var d=document.getElementById('chat-messages');
+  var card=document.createElement('div');
+  card.className='contact-card';
+  card.id='cc-sms';
+  card.innerHTML='<div class="cc-header"><span>📱</span>Text Updates</div>'
+    +'<div class="cc-body" style="text-align:center;">'
+    +'<p style="font-size:13px;color:'+_textSecColor+';margin-bottom:14px;line-height:1.5;">Would you like to receive text message reminders about your upcoming tour?</p>'
+    +'<p style="font-size:11px;color:'+_textSecColor+';margin-bottom:14px;line-height:1.4;opacity:0.7;">Message & data rates may apply. Reply STOP to unsubscribe at any time.</p>'
+    +'<div style="display:flex;gap:10px;">'
+    +'<button onclick="submitOptIn(\'sms\',true)" style="flex:1;background:'+_accentHex+';color:#fff;">Yes, text me!</button>'
+    +'<button onclick="submitOptIn(\'sms\',false)" style="flex:1;background:transparent;color:'+_textSecColor+';border:1.5px solid '+_borderColor+';">No thanks</button>'
+    +'</div></div>';
+  d.appendChild(card);scr();
+}
 
-function showVendorOptIn(){var d=document.getElementById('chat-messages');var card2=document.createElement('div');card2.className='contact-card';card2.id='cc-vendor';card2.innerHTML='<div class="cc-header"><span>💍</span>Vendor Recommendations</div><div class="cc-body" style="text-align:center;"><p style="font-size:13px;color:'+_textSecColor+';margin-bottom:14px;line-height:1.5;">Would you like to receive recommendations from our trusted wedding vendors? (DJs, photographers, florists, and more)</p><div style="display:flex;gap:10px;"><button onclick="submitOptIn(\'vendor\',true)" style="flex:1;background:'+_accentHex+';color:#fff;">Yes, show me vendors!</button><button onclick="submitOptIn(\'vendor\',false)" style="flex:1;background:transparent;color:'+_textSecColor+';border:1.5px solid '+_borderColor+';">No thanks</button></div></div>';d.appendChild(card2);scr();}
-
-function submitOptIn(type,accepted){if(type==='followup'){document.getElementById('cc-followup').classList.add('used');cState.followup_optin=accepted;addMsg(accepted?'Yes, keep me updated!':'No thanks on updates','user');setTimeout(function(){showVendorOptIn();},600);}else if(type==='vendor'){document.getElementById('cc-vendor').classList.add('used');cState.vendor_optin=accepted;addMsg(accepted?'Yes, show me vendors!':'No thanks on vendors','user');setTimeout(function(){addMsg("Thank you! We will contact you via the information provided. Have a wonderful rest of your day!",'bot');},600);sendWH('__SAVE_OPTINS__');}}
+function submitOptIn(type,accepted){
+  document.getElementById('cc-sms').classList.add('used');
+  cState.sms_optin=accepted;
+  addMsg(accepted?'Yes, send me text reminders!':'No thanks on texts','user');
+  setTimeout(function(){
+    addMsg("Thank you! We will contact you via the information provided. Have a wonderful rest of your day!",'bot');
+  },600);
+  sendWH('__SAVE_OPTINS__');
+}
 
 function hideInputArea(){document.getElementById('chat-input-area').classList.add('hidden');}
 function showInputArea(){document.getElementById('chat-input-area').classList.remove('hidden');setTimeout(function(){document.getElementById('chat-input').focus();},200);}
@@ -485,11 +488,11 @@ function renderTP(slots,byDate){var w=document.createElement('div');w.setAttribu
 
 function buildCal(con,bd,par){var now=new Date(),vm=now.getMonth(),vy=now.getFullYear(),sel=null;function draw(){var f=new Date(vy,vm,1).getDay(),tot=new Date(vy,vm+1,0).getDate();var h='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">';h+='<button data-cn="-1" style="background:none;border:1px solid '+_borderColor+';color:'+_textColor+';width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;">&#8249;</button>';h+='<span style="font-size:14px;font-weight:500;color:'+_textColor+';font-family:Cormorant Garamond,Georgia,serif;letter-spacing:0.03em;">'+MO[vm]+' '+vy+'</span>';h+='<button data-cn="1" style="background:none;border:1px solid '+_borderColor+';color:'+_textColor+';width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;">&#8250;</button>';h+='</div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center;">';var dw=['Su','Mo','Tu','We','Th','Fr','Sa'];for(var d=0;d<7;d++)h+='<div style="font-size:10px;color:'+_textSecColor+';font-weight:600;padding:4px 0;">'+dw[d]+'</div>';for(var e=0;e<f;e++)h+='<div></div>';for(var i=1;i<=tot;i++){var dt=new Date(vy,vm,i);var k=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');var ps=dt<=now,wk=dt.getDay()===0||dt.getDay()===6;var ha=bd[k]&&bd[k].times&&bd[k].times.length>0;var isFutureWeekday=!ps&&!wk;var off=ps||wk||(isFutureWeekday?false:!ha);var isSel=sel===k;var bg=isSel?_accentHex:'transparent';var col=isSel?'#fff':(off?_textDimColor:_textColor);var cur=off?'default':'pointer';var dot=(ha&&!ps&&!wk)?'<div style="width:4px;height:4px;background:'+_accentHex+';border-radius:50%;margin:1px auto 0;"></div>':'';h+='<div data-dy="'+(off?'':k)+'" style="padding:7px 2px;font-size:12px;border-radius:8px;cursor:'+cur+';color:'+col+';background:'+bg+';font-weight:500;position:relative;">'+i+dot+'</div>';}h+='</div><div id="tms"></div>';con.innerHTML=h;var ns=con.querySelectorAll('[data-cn]');for(var n=0;n<ns.length;n++)(function(b){b.onclick=function(){vm+=parseInt(b.getAttribute('data-cn'));if(vm<0){vm=11;vy--;}if(vm>11){vm=0;vy++;}if(vy<now.getFullYear()||(vy===now.getFullYear()&&vm<now.getMonth())){vy=now.getFullYear();vm=now.getMonth();}draw();};})(ns[n]);var ds=con.querySelectorAll('[data-dy]');for(var j=0;j<ds.length;j++)(function(c){var dk=c.getAttribute('data-dy');if(!dk)return;c.onmouseenter=function(){if(sel!==dk){c.style.background=_accentHex;c.style.color='#fff';}};c.onmouseleave=function(){if(sel!==dk){c.style.background='';c.style.color=_textColor;}};c.onclick=function(){sel=dk;draw();showTm(dk);scr();};})(ds[j]);if(sel)showTm(sel);}function showTm(dk){var sec=con.querySelector('#tms'),info=bd[dk];if(!info||!info.times||!info.times.length){var dd=new Date(dk+'T12:00:00');var dn=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dd.getDay()];var dm=MS[dd.getMonth()]+' '+dd.getDate();info={dayName:dn,displayDate:dm,times:[]};}var all=['9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM'];var av={};for(var a=0;a<info.times.length;a++)av[info.times[a]]=true;var anyFree=info.times.length>0;var h='<div style="margin-top:14px;"><div style="font-size:10.5px;text-transform:uppercase;letter-spacing:0.1em;color:'+_textSecColor+';font-weight:500;margin-bottom:8px;">'+info.dayName+', '+info.displayDate+'</div>';if(!anyFree){h+='<div style="padding:20px;text-align:center;border-radius:10px;font-size:13px;color:'+_textSecColor+';background:'+_hoverBg+';border:1px solid '+_borderColor+';">No availability on this day</div>';}else{h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">';for(var t=0;t<all.length;t++){var free=av[all[t]];if(free){h+='<div data-tm="'+all[t]+'" style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;color:'+_accentHex+';background:'+_hoverBg+';border:1px solid '+_borderColor+';transition:all 0.15s;">'+all[t]+'</div>';}else{h+='<div style="padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:500;color:'+_textDimColor+';background:'+(_isLight?'#f5f3f0':_hoverBg)+';text-decoration:line-through;">'+all[t]+'</div>';}}h+='</div>';}h+='</div><button id="cfb" disabled style="width:100%;padding:12px;margin-top:14px;background:'+_hoverBg+';color:'+_textSecColor+';border:none;border-radius:10px;font-size:12px;font-weight:500;cursor:default;font-family:Outfit,-apple-system,sans-serif;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s;">Select a time</button></div>';sec.innerHTML=h;var pk=null;var tc=sec.querySelectorAll('[data-tm]');for(var u=0;u<tc.length;u++)(function(c){c.onmouseenter=function(){if(c.getAttribute('data-tm')!==pk){c.style.outline='1.5px solid '+_accentHex;c.style.transform='scale(1.04)';}};c.onmouseleave=function(){if(c.getAttribute('data-tm')!==pk){c.style.outline='';c.style.transform='';}};c.onclick=function(){var all2=sec.querySelectorAll('[data-tm]');for(var x=0;x<all2.length;x++){all2[x].style.background=_hoverBg;all2[x].style.color=_accentHex;all2[x].style.outline='';all2[x].style.transform='';}c.style.background=_accentHex;c.style.color='#fff';pk=c.getAttribute('data-tm');var b=sec.querySelector('#cfb');b.disabled=false;b.style.background=_accentHex;b.style.cursor='pointer';b.style.color='#fff';b.textContent='Book '+info.displayDate+' at '+pk;};})(tc[u]);var cfb=sec.querySelector('#cfb');if(cfb)cfb.onclick=function(){if(!pk)return;var v=info.dayName+', '+info.displayDate+' at '+pk;par.style.pointerEvents='none';par.style.opacity='0.4';addMsg(v,'user');sendWH(v);};}draw();}
 
-function addQR(reps){if(!reps||!reps.length)return;if(cState.booking_created){reps=reps.filter(function(r){return(r.value||r.label||r)!=='__SWITCH_TO_BOOKING__';});if(!reps.length)return;}var d=document.getElementById('chat-messages'),c=document.createElement('div');c.className='qr';for(var i=0;i<reps.length;i++)(function(r){var b=document.createElement('button');if(r.type==='slot')b.className='slot';else if(r.type==='custom')b.className='cust';b.textContent=r.label||r;b.onclick=function(){c.classList.add('used');var val=r.value||r.label||r;if(val==='__SWITCH_TO_BOOKING__'){currentRoute='booking';showInputArea();addMsg(r.label||r,'user');sendWH("I'd like to continue scheduling my tour");return;}if(val==='__SHOW_FAQ_TOPICS__'){currentRoute='faq';hideInputArea();addMsg(r.label||r,'user');showFAQTopics();return;}if(val==='__SWITCH_TO_FAQ__'){currentRoute='faq';hideInputArea();addMsg(r.label||r,'user');showFAQTopics();return;}if(val==='__DISMISS__'){addMsg(r.label||r,'user');addMsg("You're all set! If you need anything else, just type a message. We look forward to seeing you! \ud83d\ude0a",'bot');showInputArea();return;}addMsg(r.label||r,'user');sendWH(val);};c.appendChild(b);})(reps[i]);d.appendChild(c);scr();}
+function addQR(reps){if(!reps||!reps.length)return;if(cState.booking_created){reps=reps.filter(function(r){return(r.value||r.label||r)!=='__SWITCH_TO_BOOKING__';});if(!reps.length)return;}var d=document.getElementById('chat-messages'),c=document.createElement('div');c.className='qr';for(var i=0;i<reps.length;i++)(function(r){var b=document.createElement('button');if(r.type==='slot')b.className='slot';else if(r.type==='custom')b.className='cust';b.textContent=r.label||r;b.onclick=function(){c.classList.add('used');var val=r.value||r.label||r;if(val==='__SWITCH_TO_BOOKING__'){currentRoute='booking';showInputArea();addMsg(r.label||r,'user');sendWH("I'd like to continue scheduling my tour");return;}if(val==='__SHOW_FAQ_TOPICS__'){currentRoute='faq';hideInputArea();addMsg(r.label||r,'user');showFAQTopics();return;}if(val==='__SWITCH_TO_FAQ__'){currentRoute='faq';hideInputArea();addMsg(r.label||r,'user');showFAQTopics();return;}if(val==='__DISMISS__'){addMsg(r.label||r,'user');addMsg("You're all set! If you need anything else, just type a message. We look forward to seeing you! 😊",'bot');showInputArea();return;}addMsg(r.label||r,'user');sendWH(val);};c.appendChild(b);})(reps[i]);d.appendChild(c);scr();}
 
 function sendMessage(){var inp=document.getElementById('chat-input'),m=inp.value.trim();if(!m||busy||!consented)return;if(!currentRoute)currentRoute='faq';dis();addMsg(m,'user');inp.value='';sendWH(m);}
 
-function sendWH(msg){if(!msg||!String(msg).trim()){console.warn('[WIDGET] Blocked empty send');return;}msg=String(msg).trim();if(!sendWH._count)sendWH._count=0;sendWH._count++;if(sendWH._count>60){addMsg("You've reached the message limit for this session. Please refresh the page to start a new conversation.",'bot');return;}dis();var now=Date.now();if(sendWH._last&&(now-sendWH._last)<3000&&sendWH._lastMsg===msg){console.warn('[WIDGET] Blocked duplicate send');return;}sendWH._last=now;sendWH._lastMsg=msg;var sb=document.getElementById('chat-send');busy=true;sb.disabled=true;showTyp();recent.push({role:'user',content:msg,timestamp:new Date().toISOString()});if(recent.length>12)recent=recent.slice(-12);var payload={session_id:sid,venue_id:_venueId,message:msg,route:currentRoute||'booking',client_state:{name:cState.name,email:cState.email,phone:cState.phone,guest_count:cState.guest_count,date_interest:cState.date_interest,tour_date:cState.tour_date,budget_range:cState.budget_range,intent_score:cState.intent_score,wants_booking:cState.wants_booking,booking_created:cState.booking_created,escalated:cState.escalated,status:cState.status,followup_optin:cState.followup_optin,vendor_optin:cState.vendor_optin,recent_messages:recent}};fetch(CFG.url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(data){hideTyp();if(sendWH._lastMsg==='__SAVE_OPTINS__'){busy=false;document.getElementById('chat-send').disabled=false;return;}if(!data.reply||!data.reply.trim()){busy=false;document.getElementById('chat-send').disabled=false;if(!sendWH._retrying){sendWH._retrying=true;setTimeout(function(){sendWH._retrying=false;sendWH(msg);},1200);}else{sendWH._retrying=false;}return;}sendWH._retrying=false;var reply=data.reply;addMsg(reply,'bot');recent.push({role:'assistant',content:reply,timestamp:new Date().toISOString()});if(recent.length>12)recent=recent.slice(-12);if(data.switch_route==='booking'){currentRoute='booking';}var justBooked=false;if(data.client_state){var cs=data.client_state;if(cs.name)cState.name=cs.name;if(cs.email)cState.email=cs.email;if(cs.phone)cState.phone=cs.phone;if(cs.guest_count)cState.guest_count=cs.guest_count;if(cs.date_interest)cState.date_interest=cs.date_interest;if(cs.tour_date)cState.tour_date=cs.tour_date;if(cs.budget_range)cState.budget_range=cs.budget_range;if(cs.intent_score)cState.intent_score=cs.intent_score;if(cs.wants_booking)cState.wants_booking=true;if(cs.booking_created&&!cState.booking_created)justBooked=true;if(cs.booking_created)cState.booking_created=true;if(cs.escalated)cState.escalated=true;if(cs.status)cState.status=cs.status;}var type=data.input_type||'text';setTimeout(function(){try{if(justBooked){showOptIns();}else if(type==='get_contact'){showContactCard('contact');}else if(type==='get_booking_contact'){showContactCard('booking_contact');}else if(type==='get_email'){showContactCard('email');}else if(type==='get_phone'){showPhoneCard();}else if(type==='faq_topics'){hideInputArea();showFAQTopics();}else if(type==='month_year'){showInputArea();renderMP();}else if(type==='date_time_slots'||type==='date_time_custom'){showInputArea();var sv=[];if(data.quick_replies)for(var i=0;i<data.quick_replies.length;i++)if(data.quick_replies[i].type==='slot')sv.push(data.quick_replies[i].value);renderTP(sv,data.available_by_date||{});}else{showInputArea();if(data.quick_replies&&data.quick_replies.length>0){addQR(data.quick_replies);}}}catch(e){addMsg('Error: '+e.message,'err');}},200);busy=false;sb.disabled=false;if(type!=='get_contact'&&type!=='get_booking_contact'&&type!=='get_email'&&type!=='get_phone'&&type!=='faq_topics'){document.getElementById('chat-input').focus();}}).catch(function(e){hideTyp();addMsg('Connection error. Please try again.','err');busy=false;document.getElementById('chat-send').disabled=false;});}
+function sendWH(msg){if(!msg||!String(msg).trim()){console.warn('[WIDGET] Blocked empty send');return;}msg=String(msg).trim();if(!sendWH._count)sendWH._count=0;sendWH._count++;if(sendWH._count>60){addMsg("You've reached the message limit for this session. Please refresh the page to start a new conversation.",'bot');return;}dis();var now=Date.now();if(sendWH._last&&(now-sendWH._last)<3000&&sendWH._lastMsg===msg){console.warn('[WIDGET] Blocked duplicate send');return;}sendWH._last=now;sendWH._lastMsg=msg;var sb=document.getElementById('chat-send');busy=true;sb.disabled=true;showTyp();recent.push({role:'user',content:msg,timestamp:new Date().toISOString()});if(recent.length>12)recent=recent.slice(-12);var payload={session_id:sid,venue_id:_venueId,message:msg,route:currentRoute||'booking',client_state:{name:cState.name,email:cState.email,phone:cState.phone,guest_count:cState.guest_count,date_interest:cState.date_interest,tour_date:cState.tour_date,budget_range:cState.budget_range,intent_score:cState.intent_score,wants_booking:cState.wants_booking,booking_created:cState.booking_created,escalated:cState.escalated,status:cState.status,sms_optin:cState.sms_optin,recent_messages:recent}};fetch(CFG.url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(data){hideTyp();if(sendWH._lastMsg==='__SAVE_OPTINS__'){busy=false;document.getElementById('chat-send').disabled=false;return;}if(!data.reply||!data.reply.trim()){busy=false;document.getElementById('chat-send').disabled=false;if(!sendWH._retrying){sendWH._retrying=true;setTimeout(function(){sendWH._retrying=false;sendWH(msg);},1200);}else{sendWH._retrying=false;}return;}sendWH._retrying=false;var reply=data.reply;addMsg(reply,'bot');recent.push({role:'assistant',content:reply,timestamp:new Date().toISOString()});if(recent.length>12)recent=recent.slice(-12);if(data.switch_route==='booking'){currentRoute='booking';}var justBooked=false;if(data.client_state){var cs=data.client_state;if(cs.name)cState.name=cs.name;if(cs.email)cState.email=cs.email;if(cs.phone)cState.phone=cs.phone;if(cs.guest_count)cState.guest_count=cs.guest_count;if(cs.date_interest)cState.date_interest=cs.date_interest;if(cs.tour_date)cState.tour_date=cs.tour_date;if(cs.budget_range)cState.budget_range=cs.budget_range;if(cs.intent_score)cState.intent_score=cs.intent_score;if(cs.wants_booking)cState.wants_booking=true;if(cs.booking_created&&!cState.booking_created)justBooked=true;if(cs.booking_created)cState.booking_created=true;if(cs.escalated)cState.escalated=true;if(cs.status)cState.status=cs.status;}var type=data.input_type||'text';setTimeout(function(){try{if(justBooked){showOptIns();}else if(type==='get_contact'){showContactCard('contact');}else if(type==='get_booking_contact'){showContactCard('booking_contact');}else if(type==='get_email'){showContactCard('email');}else if(type==='get_phone'){showPhoneCard();}else if(type==='faq_topics'){hideInputArea();showFAQTopics();}else if(type==='month_year'){showInputArea();renderMP();}else if(type==='date_time_slots'||type==='date_time_custom'){showInputArea();var sv=[];if(data.quick_replies)for(var i=0;i<data.quick_replies.length;i++)if(data.quick_replies[i].type==='slot')sv.push(data.quick_replies[i].value);renderTP(sv,data.available_by_date||{});}else{showInputArea();if(data.quick_replies&&data.quick_replies.length>0){addQR(data.quick_replies);}}}catch(e){addMsg('Error: '+e.message,'err');}},200);busy=false;sb.disabled=false;if(type!=='get_contact'&&type!=='get_booking_contact'&&type!=='get_email'&&type!=='get_phone'&&type!=='faq_topics'){document.getElementById('chat-input').focus();}}).catch(function(e){hideTyp();addMsg('Connection error. Please try again.','err');busy=false;document.getElementById('chat-send').disabled=false;});}
 </script>
 </body>
 </html>
