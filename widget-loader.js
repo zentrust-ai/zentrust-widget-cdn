@@ -4,7 +4,7 @@
   // ============================================
   // ZENTRUST WIDGET LOADER v3.1
   // Supports light + dark themes, configurable toggle size
-  // Dynamic booking labels per venue/vendor
+  // Dynamic booking labels and FAQ topics per venue/vendor
   // Usage: <script src=".../widget-loader.js" data-venue-id="grand_manor"></script>
   // ============================================
 
@@ -58,6 +58,7 @@
       + '&mode=' + encodeURIComponent(mode)
       + '&bookingLabel=' + encodeURIComponent(theme.bookingLabel || 'Tour')
       + '&entityLabel=' + encodeURIComponent(theme.entityLabel || 'venue')
+      + (theme.faqTopics ? '&faqTopics=' + encodeURIComponent(JSON.stringify(theme.faqTopics)) : '')
       + (theme.bg ? '&bg=' + encodeURIComponent(theme.bg) : '')
       + (theme.surface ? '&surface=' + encodeURIComponent(theme.surface) : '')
       + (theme.headerBg ? '&headerBg=' + encodeURIComponent(theme.headerBg) : '')
