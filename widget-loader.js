@@ -2,8 +2,9 @@
   'use strict';
 
   // ============================================
-  // ZENTRUST WIDGET LOADER v3.0
+  // ZENTRUST WIDGET LOADER v3.1
   // Supports light + dark themes, configurable toggle size
+  // Dynamic booking labels per venue/vendor
   // Usage: <script src=".../widget-loader.js" data-venue-id="grand_manor"></script>
   // ============================================
 
@@ -36,6 +37,7 @@
     var accent = '#' + theme.accent;
     var toggleH = parseInt(theme.toggleSize) || 50;
     var toggleR = Math.round(toggleH / 2);
+    var toggleLabel = theme.toggleLabel || 'Chat';
 
     // Toggle colors based on mode
     var toggleBg = isLight ? accent : '#131b2e';
@@ -54,6 +56,8 @@
       + '&venue=' + encodeURIComponent(theme.venue)
       + '&greet=' + encodeURIComponent(theme.greet)
       + '&mode=' + encodeURIComponent(mode)
+      + '&bookingLabel=' + encodeURIComponent(theme.bookingLabel || 'Tour')
+      + '&entityLabel=' + encodeURIComponent(theme.entityLabel || 'venue')
       + (theme.bg ? '&bg=' + encodeURIComponent(theme.bg) : '')
       + (theme.surface ? '&surface=' + encodeURIComponent(theme.surface) : '')
       + (theme.headerBg ? '&headerBg=' + encodeURIComponent(theme.headerBg) : '')
@@ -108,7 +112,7 @@
     toggle.setAttribute('aria-label', 'Open chat');
     toggle.innerHTML =
       '<svg class="zt-icon-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>' +
-      '<span class="zt-label">' + (theme.toggleLabel || 'Chat') + '</span>' +
+      '<span class="zt-label">' + toggleLabel + '</span>' +
       '<svg class="zt-icon-close" viewBox="0 0 24 24"><path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12 5.7 16.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.89a1 1 0 0 0 1.41-1.41L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/></svg>';
     document.body.appendChild(toggle);
 
