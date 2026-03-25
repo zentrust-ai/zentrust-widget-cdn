@@ -13,7 +13,9 @@ window.ZT_THEMES = {
     headerBg:    "8E7CA5",
     text:        "3d3d3d",
     textSec:     "888888",
-    toggleLabel: "Book a Tour"
+    toggleLabel: "Book a Tour",
+    bookingLabel: "Tour",
+    entityLabel:  "venue"
   },
 
   renaissance_catering: {
@@ -23,7 +25,9 @@ window.ZT_THEMES = {
     accent:      "c9a84c",
     accentHover: "d4b95e",
     mode:        "dark",
-    toggleLabel: "Book a Tasting"
+    toggleLabel: "Book a Tasting",
+    bookingLabel: "Tasting",
+    entityLabel:  "catering"
   },
 
   zentrust: {
@@ -33,7 +37,9 @@ window.ZT_THEMES = {
     accent:      "3a9fb0",
     accentHover: "4dbbc9",
     mode:        "dark",
-    toggleLabel: "Chat with Zeni"
+    toggleLabel: "Chat with Zeni",
+    bookingLabel: "Tour",
+    entityLabel:  "venue"
   }
 
 };
