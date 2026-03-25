@@ -1,14 +1,10 @@
-/*  Zentrust Widget – Venue Themes
-    Each key is a data-theme value used in the embed snippet.
-    widget-loader.js reads these to build the iframe URL + style the toggle.
-*/
-var defined_themes = {
+/*  Zentrust Widget – Venue Themes  */
+window.ZT_THEMES = {
 
-  /* ── Grand Manor (Melbourne, FL) ── Light / Purple ── */
   grand_manor: {
     venue_id:    "grand_manor",
     venue:       "Venue Concierge",
-    greet:       "Hi! I'm Zeni, your Venue Concierge for The Grand Manor. How can I help you today?",
+    greet:       "Hi! I'm Zeni, your AI concierge for The Grand Manor. How can I help you today?",
     accent:      "8E7CA5",
     accentHover: "a08db8",
     mode:        "light",
@@ -20,7 +16,6 @@ var defined_themes = {
     toggleLabel: "Book a Tour"
   },
 
-  /* ── Renaissance Catering (Melbourne, FL) ── Dark / Gold ── */
   renaissance_catering: {
     venue_id:    "renaissance_catering",
     venue:       "Catering Concierge",
@@ -31,7 +26,6 @@ var defined_themes = {
     toggleLabel: "Book a Tasting"
   },
 
-  /* ── Zentrust.net (Product Website) ── Dark / Teal ── */
   zentrust: {
     venue_id:    "",
     venue:       "Zentrust AI",
