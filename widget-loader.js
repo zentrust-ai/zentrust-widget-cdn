@@ -2,9 +2,10 @@
   'use strict';
 
   // ============================================
-  // ZENTRUST WIDGET LOADER v3.1
+  // ZENTRUST WIDGET LOADER v3.2
   // Supports light + dark themes, configurable toggle size
-  // Dynamic booking labels and FAQ topics per venue/vendor
+  // Dynamic booking labels, tour hours per venue/vendor
+  // FAQ topics loaded from Supabase (no longer in URL params)
   // Usage: <script src=".../widget-loader.js" data-venue-id="grand_manor"></script>
   // ============================================
 
@@ -58,6 +59,10 @@
       + '&mode=' + encodeURIComponent(mode)
       + '&bookingLabel=' + encodeURIComponent(theme.bookingLabel || 'Tour')
       + '&entityLabel=' + encodeURIComponent(theme.entityLabel || 'venue')
+      + '&tourHoursLabel=' + encodeURIComponent(theme.tourHoursLabel || 'Mon\u2013Fri \u00b7 9 AM \u2013 5 PM')
+      + '&tourStartHour=' + (theme.tourStartHour || 9)
+      + '&tourEndHour=' + (theme.tourEndHour || 17)
+      + '&tourDays=' + encodeURIComponent(theme.tourDays || '1,2,3,4,5')
       + (theme.bg ? '&bg=' + encodeURIComponent(theme.bg) : '')
       + (theme.surface ? '&surface=' + encodeURIComponent(theme.surface) : '')
       + (theme.headerBg ? '&headerBg=' + encodeURIComponent(theme.headerBg) : '')
