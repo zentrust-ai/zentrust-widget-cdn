@@ -58,7 +58,6 @@
       + '&mode=' + encodeURIComponent(mode)
       + '&bookingLabel=' + encodeURIComponent(theme.bookingLabel || 'Tour')
       + '&entityLabel=' + encodeURIComponent(theme.entityLabel || 'venue')
-      + (theme.faqTopics ? '&faqTopics=' + encodeURIComponent(JSON.stringify(theme.faqTopics)) : '')
       + (theme.bg ? '&bg=' + encodeURIComponent(theme.bg) : '')
       + (theme.surface ? '&surface=' + encodeURIComponent(theme.surface) : '')
       + (theme.headerBg ? '&headerBg=' + encodeURIComponent(theme.headerBg) : '')
