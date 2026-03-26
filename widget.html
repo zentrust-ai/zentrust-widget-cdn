@@ -155,7 +155,6 @@ var _hoverBg = _isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.04)';
 var _bookingLabel = decodeURIComponent(_urlParams.get('bookingLabel') || 'Tour');
 var _entityLabel = decodeURIComponent(_urlParams.get('entityLabel') || 'venue');
 var _faqTopics = [];
-try { var _ftp = _urlParams.get('faqTopics'); if (_ftp) _faqTopics = JSON.parse(decodeURIComponent(_ftp)); } catch(e) { _faqTopics = []; }
 
 var _accentHex = '#' + _accent;
 var _accentHoverHex = '#' + _accentHover;
