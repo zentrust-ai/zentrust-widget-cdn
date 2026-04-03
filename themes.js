@@ -30,10 +30,10 @@ window.ZT_THEMES = {
     toggleLabel: "Book a Tasting",
     bookingLabel: "Tasting",
     entityLabel:  "catering",
-    tourHoursLabel: "Mon\u2013Fri \u00b7 9 AM \u2013 5 PM",
+    tourHoursLabel: "Wed \u00b7 9 AM \u2013 5 PM",
     tourStartHour: 9,
     tourEndHour:   17,
-    tourDays:      "1,2,3,4,5"
+    tourDays:      "3"
   },
   zentrust: {
     venue_id:    "",
