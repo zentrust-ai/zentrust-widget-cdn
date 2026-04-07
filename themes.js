@@ -22,7 +22,7 @@ window.ZT_THEMES = {
   },
   renaissance_catering: {
     venue_id:    "renaissance_catering",
-    venue:       "Catering Concierge",
+    venue:       "AI Assistant",
     greet:       "Hi! I'm Zeni, your AI concierge for Renaissance Catering. How can I help you today?",
     accent:      "c9a84c",
     accentHover: "d4b95e",
