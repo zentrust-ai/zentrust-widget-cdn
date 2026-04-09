@@ -30,10 +30,11 @@ window.ZT_THEMES = {
     toggleLabel: "AI Assistant",
     bookingLabel: "Tasting",
     entityLabel:  "catering",
-    tourHoursLabel: "Wed \u00b7 9 AM \u2013 5 PM",
-    tourStartHour: 9,
-    tourEndHour:   17,
-    tourDays:      "3"
+    tourHoursLabel: "Wed \u00b7 5 PM \u2013 8 PM",
+    tourStartHour: 17,
+    tourEndHour:   20,
+    tourDays:      "3",
+    minLeadDays: 7
   },
   zentrust: {
     venue_id:    "",
