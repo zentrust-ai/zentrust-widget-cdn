@@ -18,7 +18,8 @@ window.ZT_THEMES = {
     tourHoursLabel: "Tue\u2013Thu \u00b7 8 AM \u2013 4 PM",
     tourStartHour: 8,
     tourEndHour:   17,
-    tourDays:      "2,3,4"
+    tourDays:      "2,3,4",
+    tourSlotInterval: 60
   },
   renaissance_catering: {
     venue_id:    "renaissance_catering",
@@ -34,6 +35,7 @@ window.ZT_THEMES = {
     tourStartHour: 17,
     tourEndHour:   20,
     tourDays:      "3",
+    tourSlotInterval: 30,
     minLeadDays: 7
   },
   zentrust: {
