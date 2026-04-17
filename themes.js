@@ -12,7 +12,7 @@ window.ZT_THEMES = {
     headerBg:    "8E7CA5",
     text:        "3d3d3d",
     textSec:     "888888",
-    toggleLabel: "AI Concierge",
+    toggleLabel: "Check Availability",
     bookingLabel: "Tour",
     entityLabel:  "venue",
     tourHoursLabel: "Tue\u2013Thu \u00b7 8 AM \u2013 4 PM",
