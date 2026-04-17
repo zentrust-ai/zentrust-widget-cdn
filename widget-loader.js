@@ -2,10 +2,9 @@
   'use strict';
 
   // ============================================
-  // ZENTRUST WIDGET LOADER v3.2
-  // Supports light + dark themes, configurable toggle size
-  // Dynamic booking labels, tour hours per venue/vendor
-  // FAQ topics loaded from Supabase (no longer in URL params)
+  // ZENTRUST WIDGET LOADER v3.3
+  // Premium polish: gradient toggle, subtle glow, refined hover
+  // Same design language as widget.html interior
   // Usage: <script src=".../widget-loader.js" data-venue-id="grand_manor"></script>
   // ============================================
 
@@ -36,17 +35,15 @@
     var mode = theme.mode || 'dark';
     var isLight = mode === 'light';
     var accent = '#' + theme.accent;
-    var toggleH = parseInt(theme.toggleSize) || 50;
+    var accentHover = '#' + theme.accentHover;
+    var accentR = parseInt(theme.accent.substr(0,2), 16);
+    var accentG = parseInt(theme.accent.substr(2,2), 16);
+    var accentB = parseInt(theme.accent.substr(4,2), 16);
+    var accentRgb = accentR + ',' + accentG + ',' + accentB;
+    var toggleH = parseInt(theme.toggleSize) || 52;
     var toggleR = Math.round(toggleH / 2);
     var toggleLabel = theme.toggleLabel || 'Chat';
 
-    // Toggle colors based on mode
-    var toggleBg = isLight ? accent : '#131b2e';
-    var toggleText = isLight ? '#fff' : 'rgba(255,255,255,0.7)';
-    var toggleIconFill = isLight ? '#fff' : accent;
-    var toggleShadow = isLight
-      ? '0 4px 20px rgba(0,0,0,0.2)'
-      : '0 4px 20px rgba(13,17,23,0.5)';
     var frameBg = isLight ? '#' + (theme.bg || 'faf8f6') : '#0d1117';
 
     // Build widget URL with ALL theme params
@@ -69,47 +66,98 @@
       + (theme.text ? '&text=' + encodeURIComponent(theme.text) : '')
       + (theme.textSec ? '&textSec=' + encodeURIComponent(theme.textSec) : '');
 
-    // Styles
-    var style = document.createElement('style');
-    style.textContent = [
+    // Premium toggle with gradient + layered shadows + inner highlight
+    var toggleBg = isLight
+      ? 'linear-gradient(180deg,' + accentHover + ' 0%,' + accent + ' 100%)'
+      : 'linear-gradient(180deg,#1a2236 0%,#131b2e 100%)';
+    var toggleIconFill = isLight ? '#fff' : accent;
+    var toggleText = isLight ? '#fff' : 'rgba(255,255,255,0.92)';
+
+    var styleEl = document.createElement('style');
+    styleEl.textContent = [
       '#zt-toggle {',
-      '  position:fixed; bottom:24px; right:24px; height:' + toggleH + 'px; padding:0 ' + Math.round(toggleH * 0.44) + 'px;',
-      '  background:' + toggleBg + '; border-radius:' + toggleR + 'px;',
-      '  display:flex; align-items:center; justify-content:center; gap:9px;',
+      '  position:fixed; bottom:24px; right:24px;',
+      '  height:' + toggleH + 'px; padding:0 ' + Math.round(toggleH * 0.46) + 'px;',
+      '  background:' + toggleBg + ';',
+      '  border-radius:' + toggleR + 'px;',
+      '  display:flex; align-items:center; justify-content:center; gap:10px;',
       '  cursor:pointer; z-index:2147483646;',
-      '  box-shadow:' + toggleShadow + ';',
-      '  transition:all 0.3s cubic-bezier(.34,1.56,.64,1);',
+      '  box-shadow:',
+      '    0 10px 30px rgba(' + accentRgb + ',' + (isLight ? '0.32' : '0.15') + '),',
+      '    0 4px 12px rgba(0,0,0,' + (isLight ? '0.08' : '0.25') + '),',
+      '    inset 0 1px 0 rgba(255,255,255,' + (isLight ? '0.28' : '0.08') + ');',
+      '  transition: transform 0.35s cubic-bezier(.34,1.4,.64,1), box-shadow 0.3s ease, background 0.3s ease;',
       '  font-family:"Outfit",-apple-system,sans-serif;',
-      '  font-size:' + Math.max(Math.round(toggleH * 0.24), 12) + 'px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase;',
+      '  font-size:' + Math.max(Math.round(toggleH * 0.26), 13) + 'px;',
+      '  font-weight:500; letter-spacing:0.03em;',
       '  color:' + toggleText + '; border:none; outline:none;',
+      '  position:fixed;',
+      '  overflow:hidden;',
+      '  isolation:isolate;',
       '}',
-      '#zt-toggle:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,0.3); }',
-      '#zt-toggle svg { width:' + Math.round(toggleH * 0.36) + 'px; height:' + Math.round(toggleH * 0.36) + 'px; flex-shrink:0; }',
+      // Subtle gradient glow layer
+      '#zt-toggle::before {',
+      '  content:""; position:absolute; inset:0;',
+      '  background: radial-gradient(ellipse 100% 140% at 50% 0%, rgba(' + (isLight ? '255,255,255' : accentRgb) + ',' + (isLight ? '0.28' : '0.25') + ') 0%, transparent 60%);',
+      '  pointer-events:none; z-index:0;',
+      '}',
+      // Accent line along bottom (dark mode only - accent glow hint)
+      (!isLight ? '#zt-toggle::after {' +
+      '  content:""; position:absolute; left:' + Math.round(toggleH * 0.3) + 'px; right:' + Math.round(toggleH * 0.3) + 'px; bottom:0;' +
+      '  height:1px;' +
+      '  background: linear-gradient(90deg, transparent 0%, rgba(' + accentRgb + ',0.5) 50%, transparent 100%);' +
+      '  pointer-events:none; z-index:0;' +
+      '}' : ''),
+      '#zt-toggle:hover {',
+      '  transform: translateY(-2px);',
+      '  box-shadow:',
+      '    0 14px 40px rgba(' + accentRgb + ',' + (isLight ? '0.42' : '0.25') + '),',
+      '    0 6px 16px rgba(0,0,0,' + (isLight ? '0.12' : '0.3') + '),',
+      '    inset 0 1px 0 rgba(255,255,255,' + (isLight ? '0.35' : '0.12') + ');',
+      '}',
+      '#zt-toggle:active {',
+      '  transform: translateY(0);',
+      '  transition-duration: 0.1s;',
+      '}',
+      '#zt-toggle svg {',
+      '  width:' + Math.round(toggleH * 0.36) + 'px;',
+      '  height:' + Math.round(toggleH * 0.36) + 'px;',
+      '  flex-shrink:0; position:relative; z-index:1;',
+      '}',
       '#zt-toggle .zt-icon-chat { fill:' + toggleIconFill + '; }',
       '#zt-toggle .zt-icon-close { fill:' + toggleIconFill + '; display:none; }',
-      '#zt-toggle .zt-label { color:' + toggleText + '; }',
-      '#zt-toggle.zt-open { width:' + toggleH + 'px; padding:0; border-radius:50%; }',
+      '#zt-toggle .zt-label {',
+      '  color:' + toggleText + ';',
+      '  position:relative; z-index:1;',
+      '  white-space:nowrap;',
+      '}',
+      '#zt-toggle.zt-open {',
+      '  width:' + toggleH + 'px; padding:0; border-radius:50%;',
+      '}',
       '#zt-toggle.zt-open .zt-icon-chat, #zt-toggle.zt-open .zt-label { display:none; }',
       '#zt-toggle.zt-open .zt-icon-close { display:block; }',
       '',
+      // Frame with refined shadow
       '#zt-frame {',
-      '  position:fixed; bottom:' + (toggleH + 40) + 'px; right:24px;',
+      '  position:fixed; bottom:' + (toggleH + 44) + 'px; right:24px;',
       '  width:400px; height:590px;',
-      '  border:none; border-radius:16px;',
+      '  border:none; border-radius:18px;',
       '  z-index:2147483645;',
-      '  box-shadow:0 8px 40px rgba(0,0,0,' + (isLight ? '0.15' : '0.35') + ');',
+      '  box-shadow:',
+      '    0 24px 60px rgba(0,0,0,' + (isLight ? '0.18' : '0.45') + '),',
+      '    0 8px 24px rgba(0,0,0,' + (isLight ? '0.08' : '0.25') + ');',
       '  display:none; opacity:0; transform:translateY(16px) scale(0.97);',
-      '  transition:opacity 0.3s cubic-bezier(.22,1,.36,1), transform 0.3s cubic-bezier(.22,1,.36,1);',
+      '  transition: opacity 0.32s cubic-bezier(.22,1,.36,1), transform 0.32s cubic-bezier(.22,1,.36,1);',
       '  background:' + frameBg + ';',
       '}',
       '#zt-frame.zt-show { display:block; }',
       '#zt-frame.zt-visible { opacity:1; transform:translateY(0) scale(1); }',
       '@media (max-width:480px) {',
-      '  #zt-frame { width:calc(100% - 16px); height:calc(100% - 80px); bottom:72px; right:8px; }',
+      '  #zt-frame { width:calc(100% - 16px); height:calc(100% - 88px); bottom:' + (toggleH + 24) + 'px; right:8px; border-radius:16px; }',
       '  #zt-toggle { bottom:16px; right:16px; }',
       '}'
     ].join('\n');
-    document.head.appendChild(style);
+    document.head.appendChild(styleEl);
 
     // Toggle button
     var toggle = document.createElement('button');
@@ -142,7 +190,7 @@
         });
       } else {
         frame.classList.remove('zt-visible');
-        setTimeout(function() { frame.classList.remove('zt-show'); }, 300);
+        setTimeout(function() { frame.classList.remove('zt-show'); }, 320);
       }
     });
 
@@ -152,7 +200,7 @@
         isOpen = false;
         toggle.classList.remove('zt-open');
         frame.classList.remove('zt-visible');
-        setTimeout(function() { frame.classList.remove('zt-show'); }, 300);
+        setTimeout(function() { frame.classList.remove('zt-show'); }, 320);
       }
     });
   }
