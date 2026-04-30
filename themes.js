@@ -3,7 +3,7 @@ window.ZT_THEMES = {
   grand_manor: {
     venue_id:    "grand_manor",
     venue:       "Venue Concierge",
-    greet:       "Hi! I'm Zeni, your AI concierge for The Grand Manor. \ud83d\udc4b\n\nI can help you browse packages, pricing & menus \u2014 or book your tour instantly with real-time availability.",
+    greet:       "Hi! I'm Ava, your AI concierge for The Grand Manor. \ud83d\udc4b\n\nI can help you browse packages, pricing & menus \u2014 or book your tour instantly with real-time availability.",
     accent:      "8E7CA5",
     accentHover: "a08db8",
     mode:        "light",
@@ -24,7 +24,7 @@ window.ZT_THEMES = {
   renaissance_catering: {
     venue_id:    "renaissance_catering",
     venue:       "AI Concierge",
-    greet:       "Hi! I'm Zeni, your AI concierge for Renaissance Catering. \ud83d\udc4b\n\nI can help you browse menus, packages & pricing \u2014 or book your tasting instantly with real-time availability.",
+    greet:       "Hi! I'm Ava, your AI concierge for Renaissance Catering. \ud83d\udc4b\n\nI can help you browse menus, packages & pricing \u2014 or book your tasting instantly with real-time availability.",
     accent:      "c9a84c",
     accentHover: "d4b95e",
     mode:        "dark",
@@ -41,7 +41,7 @@ window.ZT_THEMES = {
   zentrust: {
     venue_id:    "",
     venue:       "Zentrust AI",
-    greet:       "Hi! I'm Zeni. Want to see how our AI concierge works? Ask me anything!",
+    greet:       "Hi! I'm Ava. Want to see how our AI concierge works? Ask me anything!",
     accent:      "3a9fb0",
     accentHover: "4dbbc9",
     mode:        "dark",
