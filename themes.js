@@ -23,7 +23,7 @@ window.ZT_THEMES = {
   },
   renaissance_catering: {
     venue_id:    "renaissance_catering",
-    venue:       "Caterer Concierge",
+    venue:       "Catering Concierge",
     greet:       "Hi! I'm Ava, your AI concierge for Renaissance Catering. \ud83d\udc4b\n\nI can help you browse menus, packages & pricing \u2014 or book your tasting instantly with real-time availability.",
     accent:      "c9a84c",
     accentHover: "d4b95e",
