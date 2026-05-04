@@ -2,7 +2,7 @@
 window.ZT_THEMES = {
   grand_manor: {
     venue_id:    "grand_manor",
-    venue:       "The Grand Manor Concierge",
+    venue:       "The Grand Manor",
     greet:       "Hi! I'm Ava, your AI concierge for The Grand Manor. \ud83d\udc4b\n\nI can help you browse packages, pricing & menus \u2014 or book your tour instantly with real-time availability.",
     accent:      "8E7CA5",
     accentHover: "a08db8",
@@ -23,7 +23,7 @@ window.ZT_THEMES = {
   },
   renaissance_catering: {
     venue_id:    "renaissance_catering",
-    venue:       "Renaissance Catering Concierge",
+    venue:       "Renaissance Catering",
     greet:       "Hi! I'm Ava, your AI concierge for Renaissance Catering. \ud83d\udc4b\n\nI can help you browse menus, packages & pricing \u2014 or book your tasting instantly with real-time availability.",
     accent:      "c9a84c",
     accentHover: "d4b95e",
