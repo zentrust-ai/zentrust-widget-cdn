@@ -36,7 +36,7 @@ window.ZT_THEMES = {
     tourEndHour:   20,
     tourDays:      "3",
     tourSlotInterval: 30,
-    minLeadDays: 7
+    minLeadDays: 4
   },
   zentrust: {
     venue_id:    "",
