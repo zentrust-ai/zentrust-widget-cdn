@@ -2,9 +2,9 @@
   'use strict';
 
   // ============================================
-  // ZENTRUST WIDGET LOADER v3.3
+  // ZENTRUST WIDGET LOADER v3.4
   // Premium polish: gradient toggle, subtle glow, refined hover
-  // Same design language as widget.html interior
+  // v3.4: now passes tourSlotInterval + minLeadDays to widget.html
   // Usage: <script src=".../widget-loader.js" data-venue-id="grand_manor"></script>
   // ============================================
 
@@ -60,6 +60,8 @@
       + '&tourStartHour=' + (theme.tourStartHour || 9)
       + '&tourEndHour=' + (theme.tourEndHour || 17)
       + '&tourDays=' + encodeURIComponent(theme.tourDays || '1,2,3,4,5')
+      + '&tourSlotInterval=' + (theme.tourSlotInterval || 60)
+      + '&minLeadDays=' + (theme.minLeadDays || 1)
       + (theme.bg ? '&bg=' + encodeURIComponent(theme.bg) : '')
       + (theme.surface ? '&surface=' + encodeURIComponent(theme.surface) : '')
       + (theme.headerBg ? '&headerBg=' + encodeURIComponent(theme.headerBg) : '')
