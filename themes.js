@@ -38,19 +38,19 @@ window.ZT_THEMES = {
     tourSlotInterval: 30,
     minLeadDays: 4
   },
-  zentrust: {
-    venue_id:    "",
-    venue:       "Zentrust AI",
-    greet:       "Hi! I'm Ava. Want to see how our AI concierge works? Ask me anything!",
-    accent:      "3a9fb0",
-    accentHover: "4dbbc9",
-    mode:        "dark",
-    toggleLabel: "Chat with Zeni",
-    bookingLabel: "Tour",
-    entityLabel:  "venue",
-    tourHoursLabel: "Mon\u2013Fri \u00b7 9 AM \u2013 5 PM",
-    tourStartHour: 9,
-    tourEndHour:   17,
-    tourDays:      "1,2,3,4,5"
-  }
+avalon_demo: {
+  venue_id:    "grand_manor",   /* real data for now — swap to "avalon_demo" once the demo venue clone exists */
+  venue:       "Avalon Concierge",
+  greet:       "Hi! I'm Ava \u2014 this is a live demo of Avalon running on real venue data. \ud83d\udc4b\n\nAsk about packages, pricing & menus, or book a tour to see real-time availability in action.",
+  accent:      "7eb88c",
+  accentHover: "6da37b",
+  mode:        "dark",
+  toggleLabel: "Try Ava Live",
+  bookingLabel: "Tour",
+  entityLabel:  "venue",
+  tourHoursLabel: "Tue\u2013Thu \u00b7 8 AM \u2013 4 PM",
+  tourStartHour: 8,
+  tourEndHour:   17,
+  tourDays:      "2,3,4",
+  tourSlotInterval: 60
 };
