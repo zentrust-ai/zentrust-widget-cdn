@@ -39,13 +39,18 @@ window.ZT_THEMES = {
     minLeadDays: 4
   },
 avalon_demo: {
-  venue_id:    "grand_manor",   /* real data for now — swap to "avalon_demo" once the demo venue clone exists */
+  venue_id:    "grand_manor",   /* real data — swap to "avalon_demo" once the demo venue clone exists */
   venue:       "Avalon Concierge",
   greet:       "Hi! I'm Ava \u2014 this is a live demo of Avalon running on real venue data. \ud83d\udc4b\n\nAsk about packages, pricing & menus, or book a tour to see real-time availability in action.",
-  accent:      "7eb88c",
-  accentHover: "6da37b",
+  accent:      "7eb88c",        /* --sage */
+  accentHover: "6da37b",        /* --sage-hover */
   mode:        "dark",
-  toggleLabel: "Try Ava Live",
+  bg:          "0d1117",        /* --bg */
+  surface:     "131b2e",        /* --surface */
+  headerBg:    "161f30",        /* --card */
+  text:        "f0f2f5",        /* --white */
+  textSec:     "8b95a5",        /* --dim */
+  toggleLabel: "Demo Chat",
   bookingLabel: "Tour",
   entityLabel:  "venue",
   tourHoursLabel: "Tue\u2013Thu \u00b7 8 AM \u2013 4 PM",
@@ -53,4 +58,5 @@ avalon_demo: {
   tourEndHour:   17,
   tourDays:      "2,3,4",
   tourSlotInterval: 60
+},
 };
